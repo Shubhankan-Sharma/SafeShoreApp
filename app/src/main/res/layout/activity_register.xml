@@ -1,51 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#E3F2FD"
     android:orientation="vertical"
-    android:padding="16dp">
+    android:padding="20dp">
+
+    <androidx.appcompat.widget.Toolbar
+        android:layout_width="match_parent"
+        android:layout_height="93dp"
+        android:background="#004AAC"
+        android:elevation="4dp">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="fitCenter"
+            android:layout_gravity="center"
+            android:contentDescription="@string/logo_desc"
+            android:src="@drawable/safeshore01" />
+    </androidx.appcompat.widget.Toolbar>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="20dp"
+        android:text="Registration"
+        android:textColor="#0D47A1"
+        android:textSize="26sp"
+        android:textStyle="bold" />
 
     <EditText
         android:id="@+id/name"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Name" />
+        android:layout_height="50dp"
+        android:layout_marginTop="20dp"
+        android:hint="Name"
+        android:textColor="#000000"
+        android:background="@drawable/edittext_rounded_blue"
+        android:padding="12dp" />
+
     <EditText
         android:id="@+id/editTextEmail"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="50dp"
+        android:layout_marginTop="12dp"
         android:hint="Email ID"
-        android:inputType="textEmailAddress" />
+        android:inputType="textEmailAddress"
+        android:textColor="#000000"
+        android:background="@drawable/edittext_rounded_blue"
+        android:padding="12dp" />
 
     <EditText
         android:id="@+id/userid"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="User  ID" />
+        android:layout_height="50dp"
+        android:layout_marginTop="12dp"
+        android:hint="User ID"
+        android:textColor="#000000"
+        android:background="@drawable/edittext_rounded_blue"
+        android:padding="12dp" />
 
     <EditText
         android:id="@+id/password"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="50dp"
+        android:layout_marginTop="12dp"
         android:hint="Password"
-        android:inputType="textPassword" />
+        android:inputType="textPassword"
+        android:textColor="#000000"
+        android:background="@drawable/edittext_rounded_blue"
+        android:padding="12dp" />
 
     <EditText
         android:id="@+id/confirm_password"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="50dp"
+        android:layout_marginTop="12dp"
         android:hint="Confirm Password"
-        android:inputType="textPassword" />
+        android:inputType="textPassword"
+        android:textColor="#000000"
+        android:background="@drawable/edittext_rounded_blue"
+        android:padding="12dp" />
 
     <EditText
         android:id="@+id/mobile_number"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="50dp"
+        android:layout_marginTop="12dp"
         android:hint="Mobile Number"
-        android:inputType="phone" />
+        android:inputType="phone"
+        android:textColor="#000000"
+        android:background="@drawable/edittext_rounded_blue"
+        android:padding="12dp" />
 
     <Button
         android:id="@+id/register_button"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Register" />
+        android:layout_height="50dp"
+        android:layout_marginTop="24dp"
+        android:text="Register"
+        android:textStyle="bold"
+        android:textColor="#FFFFFF"
+        android:backgroundTint="#004AAC"
+        android:elevation="2dp" />
 </LinearLayout>

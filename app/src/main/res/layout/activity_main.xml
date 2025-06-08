@@ -1,104 +1,241 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:background="#E0F7FA">
 
-    <EditText
-        android:id="@+id/search_bar"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Search for beaches" />
+        android:orientation="vertical">
 
-    <GridLayout
-        android:id="@+id/grid_layout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:columnCount="2"
-        android:rowCount="2">
-
-        <LinearLayout
-            android:orientation="vertical"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_columnWeight="1"
-            android:layout_margin="8dp">
+        <androidx.appcompat.widget.Toolbar
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:background="#004AAC"
+            android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
 
             <ImageView
-                android:id="@+id/beach1"
-                android:layout_width="match_parent"
-                android:layout_height="200dp"
-                android:src="@drawable/beach1" />
-
-            <TextView
-                android:id="@+id/beach1_name"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Beach 1"
-                android:gravity="center" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:orientation="vertical"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_columnWeight="1"
-            android:layout_margin="8dp">
+                android:id="@+id/overflow_menu"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_gravity="end"
+                android:padding="8dp"
+                android:src="@drawable/ic_more_vert_black_24dp"
+                android:contentDescription="More options"
+                android:background="?attr/selectableItemBackgroundBorderless" />
 
             <ImageView
-                android:id="@+id/beach2"
-                android:layout_width="match_parent"
-                android:layout_height="200dp"
-                android:src="@drawable/beach2" />
+                android:layout_width="300dp"
+                android:layout_height="100dp"
+                android:layout_gravity="center"
+                android:contentDescription="@string/logo_desc"
+                android:src="@drawable/safeshore01" />
+        </androidx.appcompat.widget.Toolbar>
 
-            <TextView
-                android:id="@+id/beach2_name"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Beach 2"
-                android:gravity="center" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:orientation="vertical"
-            android:layout_width="0dp"
+        <EditText
+            android:id="@+id/search_bar"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_columnWeight="1"
-            android:layout_margin="8dp">
+            android:hint="Search for beaches"
+            android:padding="12dp"
+            android:background="@android:drawable/editbox_background" />
 
-            <ImageView
-                android:id="@+id/beach3"
-                android:layout_width="match_parent"
-                android:layout_height="200dp"
-                android:src="@drawable/beach3" />
-
-            <TextView
-                android:id="@+id/beach3_name"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Beach 3"
-                android:gravity="center" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:orientation="vertical"
-            android:layout_width="0dp"
+        <GridLayout
+            android:id="@+id/grid_layout"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_columnWeight="1"
-            android:layout_margin="8dp">
+            android:columnCount="2"
+            android:rowCount="2"
+            android:padding="8dp">
 
-            <ImageView
-                android:id="@+id/beach4"
-                android:layout_width="match_parent"
-                android:layout_height="200dp"
-                android:src="@drawable/beach4" />
-
-            <TextView
-                android:id="@+id/beach4_name"
-                android:layout_width="match_parent"
+            <!-- Card 1 -->
+            <androidx.cardview.widget.CardView
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:text="Beach 4"
-                android:gravity="center" />
-        </LinearLayout>
-    </GridLayout>
-</LinearLayout>
+                android:layout_columnWeight="1"
+                android:layout_margin="8dp"
+                app:cardCornerRadius="10dp"
+                app:cardElevation="4dp"
+                app:cardPreventCornerOverlap="false"
+                app:cardUseCompatPadding="false"
+                android:foreground="?attr/selectableItemBackground">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <FrameLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="4dp"
+                        android:background="@drawable/image_border"
+                        android:padding="3dp">
+
+                        <ImageView
+                            android:id="@+id/beach1"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:adjustViewBounds="true"
+                            android:scaleType="centerCrop"
+                            android:src="@drawable/beach1"
+                            android:background="@drawable/image_border"
+                            android:clipToOutline="true"/>
+                    </FrameLayout>
+
+                    <TextView
+                        android:id="@+id/beach1_name"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:text="Gokarna Beach"
+                        android:textColor="#004AAC"
+                        android:textSize="20sp"
+                        android:textStyle="bold"
+                        android:fontFamily="@font/abril_fatface_regular" />
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <!-- Card 2 -->
+            <androidx.cardview.widget.CardView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_columnWeight="1"
+                android:layout_margin="8dp"
+                app:cardCornerRadius="10dp"
+                app:cardElevation="4dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <FrameLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="4dp"
+                        android:background="@drawable/image_border"
+                        android:padding="3dp">
+
+                        <ImageView
+                            android:id="@+id/beach2"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:adjustViewBounds="true"
+                            android:scaleType="centerCrop"
+                            android:src="@drawable/beach2"
+                            android:background="@drawable/image_border"
+                            android:clipToOutline="true"/>
+                    </FrameLayout>
+
+                    <TextView
+                        android:id="@+id/beach2_name"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:text="Rishikonda Beach"
+                        android:textColor="#004AAC"
+                        android:textSize="20sp"
+                        android:textStyle="bold"
+                        android:fontFamily="@font/abril_fatface_regular" />
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <!-- Card 3 -->
+            <androidx.cardview.widget.CardView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_columnWeight="1"
+                android:layout_margin="8dp"
+                app:cardCornerRadius="10dp"
+                app:cardElevation="4dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <FrameLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="4dp"
+                        android:background="@drawable/image_border"
+                        android:padding="3dp">
+
+                        <ImageView
+                            android:id="@+id/beach3"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:adjustViewBounds="true"
+                            android:scaleType="centerCrop"
+                            android:src="@drawable/beach3"
+                            android:background="@drawable/image_border"
+                            android:clipToOutline="true"/>
+                    </FrameLayout>
+
+                    <TextView
+                        android:id="@+id/beach3_name"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:text="Alibaug Beach"
+                        android:textColor="#004AAC"
+                        android:textSize="20sp"
+                        android:textStyle="bold"
+                        android:fontFamily="@font/abril_fatface_regular" />
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <!-- Card 4 -->
+            <androidx.cardview.widget.CardView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_columnWeight="1"
+                android:layout_margin="8dp"
+                app:cardCornerRadius="10dp"
+                app:cardElevation="4dp"
+                app:cardPreventCornerOverlap="false"
+                app:cardUseCompatPadding="false"
+                >
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <FrameLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="4dp"
+                        android:background="@drawable/image_border"
+                        android:padding="3dp">
+
+                        <ImageView
+                            android:id="@+id/beach4"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:adjustViewBounds="true"
+                            android:scaleType="centerCrop"
+                            android:src="@drawable/beach4"
+                            android:background="@drawable/image_border"
+                            android:clipToOutline="true" />
+                    </FrameLayout>
+
+                    <TextView
+                        android:id="@+id/beach4_name"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:text="Cherai Beach"
+                        android:textColor="#004AAC"
+                        android:textSize="20sp"
+                        android:textStyle="bold"
+                        android:fontFamily="@font/abril_fatface_regular" />
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+        </GridLayout>
+    </LinearLayout>
+</ScrollView>

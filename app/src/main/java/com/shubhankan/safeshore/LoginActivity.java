@@ -3,6 +3,7 @@ package com.shubhankan.safeshore;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -20,11 +21,22 @@ public class LoginActivity extends AppCompatActivity {
     private Button loginButton;
     private TextView registerPrompt;
     private FirebaseAuth mAuth;
+    private SharedPreferences sharedPreferences;
+    private static final String PREF_NAME = "SafeShorePrefs";
+    private static final String KEY_IS_LOGGED_IN = "isLoggedIn";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
+        sharedPreferences = getSharedPreferences(PREF_NAME, MODE_PRIVATE);
+        // If already logged in, skip login screen
+        if (sharedPreferences.getBoolean(KEY_IS_LOGGED_IN, false)) {
+            navigateToMain();
+            finish();
+            return;
+        }
 
         userid = findViewById(R.id.login_id);
         password = findViewById(R.id.password);
@@ -55,11 +67,15 @@ public class LoginActivity extends AppCompatActivity {
                             @Override
                             public void onComplete(@NonNull Task<AuthResult> task) {
                                 if (task.isSuccessful()) {
+                                    sharedPreferences.edit().putBoolean(KEY_IS_LOGGED_IN, true).apply();
+                                    Log.e("Logged in??:", String.valueOf(sharedPreferences.getBoolean(KEY_IS_LOGGED_IN, false)));
+
                                     Toast.makeText(LoginActivity.this, "Login successful", Toast.LENGTH_SHORT).show();
                                     // Navigate to the main activity
                                     Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                                     startActivity(intent);
                                     finish();
+
                                 } else {
                                     Toast.makeText(LoginActivity.this, "Login failed: " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
                                 }
@@ -67,5 +83,10 @@ public class LoginActivity extends AppCompatActivity {
                         });
             }
         });
+
+    }
+    private void navigateToMain(){
+        Intent intent = new Intent(this,MainActivity.class);
+        startActivity(intent);
     }
 }

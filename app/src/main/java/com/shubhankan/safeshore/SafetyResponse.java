@@ -1,15 +1,16 @@
 package com.shubhankan.safeshore;
 
-public class SafetyResponse {
-    private String safety_status; // Adjust the property name based on your API response
+import java.util.Map;
 
-    // Getter
+public class SafetyResponse {
+    private String safety_status;
+    private Map<String, String> activities;
+
     public String getSafetyStatus() {
         return safety_status;
     }
 
-    // Setter
-    public void setSafetyStatus(String safety_status) {
-        this.safety_status = safety_status;
+    public Map<String, String> getActivities() {
+        return activities;
     }
 }

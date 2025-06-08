@@ -1,9 +1,7 @@
 package com.shubhankan.safeshore;
-
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-
-import android.app.ProgressDialog; // Import ProgressDialog
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -11,7 +9,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
-
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
@@ -20,7 +17,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 public class RegisterActivity extends AppCompatActivity {
-    private EditText name, editTextEmail, password, confirmPassword, mobileNumber;
+    private EditText name, UserID, editTextEmail, password, confirmPassword, mobileNumber;
     private Button registerButton;
     private FirebaseAuth mAuth;
     private DatabaseReference databaseReference; // Reference to the database
@@ -29,10 +26,10 @@ public class RegisterActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
-
         name = findViewById(R.id.name);
         editTextEmail = findViewById(R.id.editTextEmail);
         password = findViewById(R.id.password);
+        UserID = findViewById(R.id.userid);
         confirmPassword = findViewById(R.id.confirm_password);
         mobileNumber = findViewById(R.id.mobile_number);
         registerButton = findViewById(R.id.register_button);
@@ -110,7 +107,21 @@ public class RegisterActivity extends AppCompatActivity {
                     }
                 });
             }
+
         });
+        /*String userName = name.getText().toString().trim();
+        String email = editTextEmail.getText().toString().trim();
+        String userID = UserID.getText().toString().trim();
+        String mobile = mobileNumber.getText().toString().trim();
+
+        User user = new User(userName,email,userID,mobile);
+        Log.e("User details: ",user.toString());
+
+        // Create an instance of UserManager
+        UserManager userManager = new UserManager();
+
+        // Upload user data
+        userManager.uploadUserData(user);*/
     }
 
     // User class to hold user data
@@ -129,6 +140,33 @@ public class RegisterActivity extends AppCompatActivity {
             this.email = email;
             this.userId = userId;
             this.mobile = mobile;
+        }
+    }
+    public class UserManager {
+
+        private DatabaseReference databaseReference;
+
+        public UserManager() {
+            // Get a reference to the Firebase Realtime Database
+            databaseReference = FirebaseDatabase.getInstance().getReference("users"); // "users" is the node where user data will be stored
+        }
+
+        public void uploadUserData(User user) {
+            // Generate a unique user ID (you can also use userId if you have it)
+            String userId = databaseReference.push().getKey(); // Generate a unique key for the user
+
+            // Set the user data in the database
+            if (userId != null) {
+                databaseReference.child(userId).setValue(user)
+                        .addOnSuccessListener(aVoid -> {
+                            // Data uploaded successfully
+                            Log.d("User Manager", "User  data uploaded successfully.");
+                        })
+                        .addOnFailureListener(e -> {
+                            // Failed to upload data
+                            Log.e("User Manager", "Failed to upload user data: " + e.getMessage());
+                        });
+            }
         }
     }
 }
